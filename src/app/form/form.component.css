@@ -1,0 +1,28 @@
+
+.mat-radio-button {
+    margin-right: 16px;
+    margin-bottom: 7px;
+}
+
+.inputDivRow{
+    min-height: 40px;
+    margin: 10px 0;
+}
+
+.inputDivRow>div {
+    display: grid;
+    align-items: center;
+}
+
+.inputDivRow label {
+    font-size: 1rem;
+    font-weight: 500;
+    color: navy;
+}
+
+mat-error{
+    font-size: 13px;
+}
+
+
+

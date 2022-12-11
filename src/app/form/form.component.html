@@ -1,0 +1,279 @@
+<!-- HTTP error message -->
+<div
+  *ngIf="httperror"
+  class="text-danger border border-danger text-center rounded shadow p-5"
+>
+  {{ httperror }}
+</div>
+
+<!-- Form section -->
+<form [formGroup]="formData" (ngSubmit)="formSubmit()" *ngIf="!httperror">
+  <div
+    class="container bg-light p-4 rounded-4 shadow"
+    *ngFor="let data of datas"
+  >
+    <h1 class="text-center fw-bold">Please Enter Your Details</h1>
+    <!-- full name section -->
+    <div class="row inputDivRow">
+      <div class="col-md-12">
+        <label for="">{{ data.questions.name }}</label>
+      </div>
+      <div class="col-md-12">
+        <div class="d-flex align-items-center">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>{{ data.label.name }}</mat-label>
+            <input
+              matInput
+              placeholder="Enter your Full Name"
+              formControlName="fullName"
+            />
+            <mat-error *ngIf="formData.controls.fullName.invalid">{{
+              getFullNameError()
+            }}</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+
+    <!-- Email section -->
+    <div class="row inputDivRow">
+      <div class="col-md-12">
+        <label for="">{{ data.questions.email }}</label>
+      </div>
+      <div class="col-md-12">
+        <div class="d-flex align-items-center">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>{{ data.label.email }}</mat-label>
+            <input
+              matInput
+              placeholder="Enter your Email ID"
+              formControlName="email"
+            />
+            <mat-error *ngIf="formData.controls.email.invalid">{{
+              getEmailError()
+            }}</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile section -->
+    <div class="row inputDivRow">
+      <div class="col-md-12">
+        <label for="">{{ data.questions.mobile }}</label>
+      </div>
+      <div class="col-md-12">
+        <div class="d-flex align-items-center">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>{{ data.label.mobile }}</mat-label>
+            <input
+              matInput
+              placeholder="Enter your Mobile Number"
+              maxlength="10"
+              minlength="10"
+              formControlName="mobile"
+            />
+            <mat-hint>Mobile number should be 10 digit</mat-hint>
+            <mat-error *ngIf="formData.controls.mobile.invalid">{{
+              getMobileError()
+            }}</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+
+    <!-- Qualification section -->
+    <div class="row inputDivRow">
+      <div class="col-md-12">
+        <label for="">{{ data.questions.qualification }}</label>
+      </div>
+      <div class="col-md-12">
+        <div class="d-flex align-items-center">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>{{ data.label.qualification }}</mat-label>
+            <mat-select formControlName="qualification">
+              <mat-option
+                *ngFor="let qual of data.qualifications"
+                value="{{ qual }}"
+                >{{ qual }}</mat-option
+              >
+            </mat-select>
+            <mat-error *ngIf="formData.controls.qualification.invalid">{{
+              getQualificationError()
+            }}</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+
+    <!-- Experience section -->
+    <div class="row inputDivRow">
+      <div class="col-md-12">
+        <label for="">{{ data.questions.experience }}</label>
+      </div>
+      <div class="col-md-12 my-2">
+        <mat-radio-group
+          aria-label="Select an option"
+          class="ms-4"
+          formControlName="experience"
+        >
+          <mat-radio-button
+            *ngFor="let item of data.experience"
+            value="{{ item }}"
+            color="primary"
+            >{{ item }}</mat-radio-button
+          >
+        </mat-radio-group>
+        <mat-error *ngIf="formData.controls.experience.invalid">
+          {{ required }}</mat-error
+        >
+      </div>
+    </div>
+
+    <!-- Skills section -->
+    <div class="row inputDivRow">
+      <div class="col-md-12">
+        <label for="">{{ data.questions.skills }} </label>
+      </div>
+      <div class="col-md-12 ms-4 my-2" formGroupName="skills">
+        <mat-checkbox
+          *ngFor="let item of data.skills"
+          formControlName="{{ item | lowercase | removeSpace }}"
+          color="primary"
+          >{{ item }}</mat-checkbox
+        >
+      </div>
+    </div>
+
+    <!-- Serving section -->
+    <div class="row inputDivRow">
+      <div class="col-md-12">
+        <label for="">{{ data.questions.serving }}</label>
+      </div>
+      <div class="col-md-12 my-2">
+        <mat-radio-group
+          aria-label="Select an option"
+          class="ms-4"
+          formControlName="serving"
+          color="primary"
+        >
+          <mat-radio-button
+            *ngFor="let item of data.yesOrNo"
+            value="{{ item }}"
+            >{{ item }}</mat-radio-button
+          >
+        </mat-radio-group>
+        <mat-error *ngIf="formData.controls.serving.invalid">
+          {{ required }}</mat-error
+        >
+      </div>
+    </div>
+
+    <!-- Offer section -->
+    <div class="row inputDivRow">
+      <div class="col-md-12">
+        <label for="">{{ data.questions.offer }}</label>
+      </div>
+      <div class="col-md-12 my-2">
+        <mat-radio-group
+          aria-label="Select an option"
+          class="ms-4"
+          formControlName="offer"
+          color="primary"
+        >
+          <mat-radio-button
+            *ngFor="let item of data.yesOrNo"
+            value="{{ item }}"
+            >{{ item }}</mat-radio-button
+          >
+        </mat-radio-group>
+        <mat-error *ngIf="formData.controls.offer.invalid">
+          {{ required }}</mat-error
+        >
+      </div>
+    </div>
+
+    <!-- Ionic section -->
+    <div class="row inputDivRow">
+      <div class="col-md-12">
+        <label for="">{{ data.questions.ionic }}</label>
+      </div>
+      <div class="col-md-12 my-2">
+        <mat-radio-group
+          aria-label="Select an option"
+          class="ms-4"
+          formControlName="ionic"
+          color="primary"
+        >
+          <mat-radio-button
+            *ngFor="let item of data.yesOrNo"
+            value="{{ item }}"
+            >{{ item }}</mat-radio-button
+          >
+        </mat-radio-group>
+        <mat-error *ngIf="formData.controls.ionic.invalid">
+          {{ required }}</mat-error
+        >
+      </div>
+    </div>
+
+    <!-- Switch section -->
+    <div class="row inputDivRow">
+      <div class="col-md-12">
+        <label for="">{{ data.questions.switch }}</label>
+      </div>
+      <div class="col-md-12 my-2">
+        <mat-radio-group
+          aria-label="Select an option"
+          class="ms-4"
+          formControlName="switch"
+          color="primary"
+        >
+          <mat-radio-button
+            *ngFor="let item of data.yesOrNo"
+            value="{{ item }}"
+            >{{ item }}</mat-radio-button
+          >
+        </mat-radio-group>
+        <mat-error *ngIf="formData.controls.switch.invalid">
+          {{ required }}</mat-error
+        >
+      </div>
+    </div>
+
+    <!-- relocate section -->
+    <div class="row inputDivRow">
+      <div class="col-md-12">
+        <label for="">{{ data.questions.relocate }}</label>
+      </div>
+      <div class="col-md-12 my-2">
+        <mat-radio-group
+          aria-label="Select an option"
+          class="ms-4"
+          formControlName="relocate"
+          color="primary"
+        >
+          <mat-radio-button
+            *ngFor="let item of data.yesOrNo"
+            value="{{ item }}"
+            >{{ item }}</mat-radio-button
+          >
+        </mat-radio-group>
+        <mat-error *ngIf="formData.controls.relocate.invalid">
+          {{ required }}</mat-error
+        >
+      </div>
+    </div>
+
+    <div class="text-center">
+      <!-- submit button -->
+      <button mat-raised-button color="primary" type="submit">Submit</button>
+      <!-- form invalid message -->
+      <mat-error class="pt-3"> {{ error }}</mat-error>
+      <span class="text-success">{{
+        error == "" ? "Submitted Successfully" : ""
+      }}</span>
+      <span></span>
+    </div>
+  </div>
+</form>

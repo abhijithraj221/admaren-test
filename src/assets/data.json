@@ -1,0 +1,39 @@
+{
+  "data": [
+    {
+      "label": {
+        "name": "Full Name",
+        "email": "Email",
+        "mobile": "Mobile",
+        "qualification": "Qualification"
+      },
+      "questions": {
+        "name": "What is your full name?",
+        "email": "Which email address is best to contact you?",
+        "mobile": "What phone number could we use to reach you?",
+        "qualification": "What is your highest qualification?",
+        "experience": "How many years of experience do you have?",
+        "skills": "What Frontend technical skills do you have?",
+        "serving": "Are you currently serving notice period?",
+        "offer": "Are you holding any offer?",
+        "ionic": "Are you familiar with Ionic Frame work?",
+        "switch": "Would you like to switch from frontend to backend development?",
+        "relocate": "Are you willing to relocate?"
+      },
+      "yesOrNo": ["yes", "no"],
+      "qualifications": ["B-Tech", "M-tech", "BE", "Bsc", "others"],
+      "experience": ["1", "2", "3", "4+"],
+      "skills": [
+        "Angular",
+        "React JS",
+        "Javascript",
+        "Typescript",
+        "HTML",
+        "CSS",
+        "Bootstrap",
+        "Jquery",
+        "Angular Materials"
+      ]
+    }
+  ]
+}
